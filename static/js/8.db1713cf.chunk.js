@@ -1,0 +1,2 @@
+(this["webpackJsonpway-of-samurai-ts"]=this["webpackJsonpway-of-samurai-ts"]||[]).push([[8],{325:function(a,s,t){"use strict";t.r(s);var n=t(0),u=t.n(n);s.default=function(){return u.a.createElement("div",null,"Musik")}}}]);
+//# sourceMappingURL=8.db1713cf.chunk.js.map

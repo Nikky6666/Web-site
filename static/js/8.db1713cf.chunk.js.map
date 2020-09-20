@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/Musik/Musik.tsx"],"names":["Musik"],"mappings":"8HAAA,2BAUeA,UARS,WACpB,OACI","file":"static/js/8.db1713cf.chunk.js","sourcesContent":["import React from 'react'\r\n\r\nconst Musik: React.FC = () => {\r\n    return (\r\n        <div>\r\n            Musik\r\n        </div>\r\n    )\r\n};\r\n\r\nexport default Musik;"],"sourceRoot":""}
