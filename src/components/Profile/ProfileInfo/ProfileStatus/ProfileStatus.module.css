@@ -1,0 +1,41 @@
+.divStatus, input {
+    background-color: #891859;
+    width: 90%;
+    height: 30px;
+    text-align: justify;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 10px;
+}
+
+
+.divStatus{
+    border: 5px solid hotpink;
+}
+
+.divStatusOwner{
+    transition: all 3s;
+}
+
+.divStatusOwner:hover{
+    background-color: #c179ff;
+    border: 3px solid black;
+    cursor: text;
+}
+
+span{
+    padding: 10px;
+}
+
+.input {
+    composes: commonInput from "../../../../index.css";
+    width: 94%;
+}
+.container{
+    min-height: 15%;
+    width: 100%;
+ /*   border: 1px solid white;*/
+    color: white;
+}

@@ -1,0 +1,90 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    grid-template-areas: 'interloc mess' 'interloc text'
+}
+.messageToSelectDialog{
+    font-size: 50px;
+    margin: 50px;
+    text-align: center;
+}
+.dialogsItems {
+    padding: 10px 20px;
+    grid-area: interloc;
+}
+
+.dialogsItems .dialog {
+    color: #fca8ff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.dialogItem .dialog:hover{
+    background-color: rgba(135, 130, 139, 0.82);
+}
+
+.dialogsItems .active, .dialogsItems .active:hover{
+    color: #fffbc7;
+    background-color: #9f97cd;
+}
+
+.messages {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 60vh;
+    overflow: auto;
+    grid-area: mess;
+}
+
+.dialogItem{
+    width: 250px;
+}
+
+.dialogItem img {
+    width: 50px;
+    border-radius: 25px;
+}
+.dialogItem .dialog{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+.dialogItem .newMessagesCount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    min-height: 25px;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: #b2afc1;
+    color: white;
+}
+
+.buttonPrevMes{
+    margin: 0 30%;
+}
+
+.text {
+    composes: commonTextarea from "../../index.css";
+    margin-top: 15px;
+    grid-area: mess;
+}
+.test textarea {
+    margin-top: 15px;
+    outline: none;
+    resize: none;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    height: 60px;
+    border: 1px solid #280020;
+    overflow: auto;
+    white-space: pre-wrap;
+}

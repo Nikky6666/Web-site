@@ -1,0 +1,16 @@
+.postsBlock {
+    padding: 10px;
+}
+
+.postsBlock h3 {
+    text-align: center;
+    font-size: 30px;
+}
+.posts {
+    margin-top: 10px;
+}
+
+.textarea {
+    composes: commonTextarea from "../../../index.css";
+    width: 95%;
+}

@@ -1,0 +1,43 @@
+.desctiptionBlock {
+  padding: 10px;
+/*  border: 1px solid white;*/
+  width: 60%;
+  composes: flexColumnCenter from "../../../index.css";
+  align-items: stretch;
+/*  border: 1px solid white;*/
+}
+
+.desctiptionBlock h1 {
+  text-decoration: underline;
+  color: #ffdaf6;
+}
+
+.image{
+  margin: 10px;
+/*  border: 1px solid white;*/
+  width: 30%;
+ composes: flexColumnCenter from "../../../index.css"
+}
+
+.image img {
+  margin: 15px;
+  width: 95%;
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  grid-template-areas: "img info";
+/*  border: 1px solid #ff1800;*/
+}
+
+.userPhoto{
+  max-width: 330px
+}
+
+.fullName{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+

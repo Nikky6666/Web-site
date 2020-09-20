@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginForm{
+    width: 50%
+}
+
+.loginForm input {
+    margin: 15px 0;
+}
+
+.input{
+    composes: commonInput from "../../index.css";
+}
+
+h1{
+    color: white;
+}
+
+.checkbox{
+    width: 50px;
+}
+
+.rememberMe{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: white
+}

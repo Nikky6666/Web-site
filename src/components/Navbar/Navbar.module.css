@@ -1,0 +1,44 @@
+
+.nav {
+  grid-area: n;
+  background-color: #C4415D;
+}
+
+.nav a{
+  cursor: pointer;
+}
+
+.item {
+  height:  30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  border-radius: 10px;
+
+}
+
+.item:hover{
+  background-color: rgba(244, 245, 172, 0.8);
+}
+
+
+.activeLink {
+  color: #303030;
+}
+.activeLink .item{
+  background-color: rgba(255, 215, 0, 0.8);
+}
+
+.newMessagesCount{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 50%;
+  color: #857e05;
+  background-color: #fff7c9;
+}
+

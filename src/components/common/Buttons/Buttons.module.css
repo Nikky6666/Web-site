@@ -1,0 +1,83 @@
+.button{
+    width: 120px;
+    min-height: 40px;
+    background-color: #CA9ABF;
+    outline: none;
+    font-size: 16px;
+    color: #170D24;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.smallButton{
+    width: 80px;
+    min-height: 25px;
+    font-size: 16px;
+    background-color: #fac5ef;
+    border-radius: 8px;
+    color: #170D24;
+    border: 3px solid #39033d;
+    margin: 5px;
+    outline: none;
+    cursor: pointer;
+}
+.smallButton:hover, .button:hover{
+    background-color: white;
+}
+.container{
+}
+
+.disabled{
+    background-color: #25012c;
+    color: gray;
+}
+
+.pagesButton{
+    min-width: 100px;
+    height: 37px;
+    font-size: 20px;
+    color: gold;
+    background-color: #a07492;
+    border-radius: 11px;
+    outline: none;
+    border: 4px solid #412041;
+    margin: 5px;
+    padding: 5px 5px 10px;
+    cursor: pointer;
+}
+
+.pagesButton:hover{
+    background-color: #bfb5f5;
+    color: #9f8400;
+}
+
+
+.notVisible{
+    visibility: hidden;
+}
+
+.addFileButton label{
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    text-align: center;
+    margin: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    transition: all 1s;
+    border: 1px solid #ff9ef4;
+    background: linear-gradient(to top right, #c957a1, #a300ea 20%, rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 0)) top right/500% 500%;
+    color: #ff9ffe;
+}
+.addFileButton label:hover {
+    color: white;
+    background-position: bottom left;
+}
+
+.addFileButton input {
+    display: none;
+}

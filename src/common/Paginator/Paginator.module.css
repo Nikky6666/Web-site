@@ -1,0 +1,28 @@
+
+.usersPages {
+    display: flex;
+    width: 95%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.usersPages div{
+    margin: 3px;
+}
+
+.page {
+    color: #9f97cd;
+    padding: 5px;
+    height: 25px;
+    background-color: rgba(73, 22, 41, 0.82);
+    border-radius: 5px;
+    border: 1px solid rgba(43, 19, 21, 0.82)
+}
+
+.currentPage {
+    background-color: #8f486b;
+    color: #fffd08;
+    border-color: gold;
+}

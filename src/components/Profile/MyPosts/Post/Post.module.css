@@ -1,0 +1,84 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.item img {
+    width: 50px;
+    border-radius: 25px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ /*   border: 1px solid white;*/
+}
+.textarea{
+    composes: commonTextarea from "../../../../index.css";
+    height: 80px;
+    margin: 0 20px;
+    border: 5px solid #281f2c;
+    background-color: #fac5ef;
+}
+
+.rightAbs{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+}
+.rightAbs div img{
+    width: 28px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+.rightAbs div:first-child{
+    margin-bottom: 20px;
+}
+
+.item form{
+    width: 100%;
+}
+
+.editContainer{
+    width: 100%;
+}
+
+.rightAbs button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ffc0e8;
+    color: #4d0755;
+    border: 2px solid #4d0755;
+    outline: none;
+    cursor: pointer;
+}
+
+.textContainer {
+    position: relative;
+    width: 90%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border: 5px solid #281f2c;
+    background-color: rgba(205, 43, 255, 0.3);
+    border-radius: 20px;
+    margin: 0 20px;
+    min-height: 80px;
+}
+
+.text {
+    padding: 5px 15px;
+}
+
+.likes {
+    text-align: right;
+}
+
+.likes span {
+    color: gold;
+}
+

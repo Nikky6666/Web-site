@@ -1,0 +1,59 @@
+.lookingForAJob{
+  width: 96%;
+  min-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+/*  border: 1px solid white;*/
+  margin: 10px 0;
+  padding: 0 15px;
+}
+
+.lookingStatus{
+  height: 30px;
+  width: 130px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.look{
+  background-color: green;
+}
+
+.dontLook{
+  background-color: gray;
+}
+
+.lookingForAJob .status{
+  display: flex;
+  align-items: center;
+}
+
+.lookingForAJob img {
+  width: 50px;
+  border-radius: 25px;
+}
+
+.description{
+/*  border: 1px solid red;*/
+  width: 40%;
+  padding: 10px;
+  background-color: #9640A1;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.dontLook{
+  background-color: gray;
+}
+
+
+.description :nth-child(1) {
+  color: #ffc0e8;
+}
+.description :nth-child(2){
+  font-size: 18px;
+}

@@ -1,0 +1,50 @@
+
+.user {
+    height: 120px;
+    width: 95%;
+    margin: 10px 0;
+  /*  border: 1px solid black;*/
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.photoButton, .buttons {
+/*    border: 1px solid black;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photo {
+    height: 80px;
+}
+
+.userData {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(201, 188, 255, 0.41);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.columnSpaceBetween {
+   /* border: 1px solid black;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.columnSpaceBetween.nameStatus {
+   width: 60%
+}
+
+
+.usersPages {
+    display: flex;
+    width: 95%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+

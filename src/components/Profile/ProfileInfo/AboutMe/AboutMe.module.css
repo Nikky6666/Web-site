@@ -1,0 +1,24 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  min-height: 70px;
+  border: 1px solid #772182;
+  background-color: #772182;
+  width: 96%;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.container .name {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffc0e8;
+}
+
+.container .description {
+  font-size: 20px;
+  padding: 5px;
+}

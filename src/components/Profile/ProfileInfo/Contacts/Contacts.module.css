@@ -1,0 +1,18 @@
+.contacts{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 15px 0;
+}
+
+.container{
+  width: 100%;
+  min-height: 30px;
+/*  border:  1px solid white;*/
+  display: flex;
+  align-items: center;
+  color: #dbdbdb;
+  padding: 10px 15px;
+  background-color: rgba(179, 80, 137, 0.25);
+  border-radius: 15px;
+}
