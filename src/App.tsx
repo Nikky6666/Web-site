@@ -42,14 +42,14 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
     };
     intervalId=null as any;
     componentDidUpdate() {
-        if(this.props.isAuth && this.intervalId===null){
+     /*   if(this.props.isAuth && this.intervalId===null){
             this.intervalId = setInterval(()=>{
                 this.props.getNewMessages();
             }, 4000);
         }
         if(!this.props.isAuth){
             clearInterval(this.intervalId);
-        }
+        }*/
     }
 
     componentWillUnmount() {

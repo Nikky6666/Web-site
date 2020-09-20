@@ -1,6 +1,7 @@
 import React from 'react';
 import Users from "./Users";
 import {
+    FilterType,
     follow, requestUsers,
     unfollow
 } from "../../redux/users-reducer";
@@ -11,13 +12,15 @@ import {
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
-    getUsers
+    getUsers,
+    getFilter
 } from "../../redux/users-selectors";
 import Preloader from "../../common/Preloader/Preloader";
 import {UserType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
 import {compose} from "redux";
 import {connect} from "react-redux";
+import { UsersSearchForm } from './UsersSearchForm';
 
 type MapStatePropsType = {
     currentPage: number
@@ -26,10 +29,11 @@ type MapStatePropsType = {
     totalUsersCount: number
     users: Array<UserType>
     followingInProgress: Array<number>
+    filter: FilterType
 }
 
 type MapDispatchPropsType = {
-    requestUsers: (currentPage: number, pageSize: number) => void
+    requestUsers: (currentPage: number, pageSize: number, filter: FilterType) => void
     unfollow: (userId: number) => void
     follow: (userId: number) => void
 }
@@ -42,18 +46,23 @@ type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
 
 class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
-        const {currentPage, pageSize} = this.props;
-        this.props.requestUsers(currentPage, pageSize);
+        const {currentPage, pageSize, filter} = this.props;
+        this.props.requestUsers(currentPage, pageSize, filter);
     }
 
     onPageChanged = (pageNumber: number) => {
-        const {pageSize} = this.props;
-        this.props.requestUsers(pageNumber, pageSize);
+        const {pageSize, filter} = this.props;
+        this.props.requestUsers(pageNumber, pageSize, filter);
     };
+
+    onFilterChanged = (filter: FilterType) => {
+        const {pageSize} = this.props;
+        this.props.requestUsers(1, pageSize, filter)
+    }
 
     render() {
         return <>
-            <h2>{this.props.pageTitle}</h2>
+            <UsersSearchForm onFilterChanged={this.onFilterChanged} />
             {
                 this.props.isFetching
                     ?
@@ -75,6 +84,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state),
+        filter: getFilter(state)
     }
 };
 
@@ -83,7 +93,7 @@ export default compose(
     connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
             follow,
             unfollow,
-            requestUsers,
+            requestUsers
         }
     ),
     /*withAuthRedirect*/

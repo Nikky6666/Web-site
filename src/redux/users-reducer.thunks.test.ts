@@ -1,9 +1,17 @@
-import {usersReducerActionCreators, follow, unfollow} from './users-reducer'
-import {userAPI} from '../api/users-api'
-import {ResponseType, ResultCodesEnum} from '../api/api'
+import {follow, unfollow, usersReducerActionCreators} from "./users-reducer";
+import {userAPI} from "../api/users-api";
+import {CommonResponseType, ResultCodesEnum} from "../api/api";
+jest.mock('../api/users-api');
 
-jest.mock('../api/users-api')
-const userAPIMock = userAPI as jest.Mocked<typeof userAPI>;
+const userApiMock = userAPI as jest.Mocked<typeof userAPI>;
+
+const result: CommonResponseType = {
+    data: {},
+    messages: [],
+    resultCode: ResultCodesEnum.Success
+}
+userApiMock.follow.mockReturnValue(Promise.resolve(result));
+userApiMock.unfollow.mockReturnValue(Promise.resolve(result));
 
 const dispatchMock = jest.fn();
 const getStateMock = jest.fn();
@@ -11,40 +19,43 @@ const getStateMock = jest.fn();
 beforeEach(() => {
     dispatchMock.mockClear();
     getStateMock.mockClear();
-    userAPIMock.follow.mockClear();
-    userAPIMock.unfollow.mockClear();
+    userApiMock.follow.mockClear();
+    userApiMock.unfollow.mockClear();
 })
-
-
-const result: ResponseType = {
-    resultCode: ResultCodesEnum.Success,
-    messages: [],
-    data: {}
-}
-
-userAPIMock.follow.mockReturnValue(Promise.resolve(result));
-userAPIMock.unfollow.mockReturnValue(Promise.resolve(result));
-
-
 
 test('success follow thunk', async () => {
-    const thunk = follow(1)
+    const thunk = follow(1);
 
-    await thunk(dispatchMock, getStateMock, {})
-
-    expect(dispatchMock).toBeCalledTimes(3)
-    expect(dispatchMock).toHaveBeenNthCalledWith(1, usersReducerActionCreators.toggleFollowingInProgress(true, 1))
-    expect(dispatchMock).toHaveBeenNthCalledWith(2, usersReducerActionCreators.followSuccess(1))
-    expect(dispatchMock).toHaveBeenNthCalledWith(3, usersReducerActionCreators.toggleFollowingInProgress(false, 1))
+  await thunk(dispatchMock, getStateMock, {});
+    expect(dispatchMock).toHaveBeenCalledTimes(3);
+    expect(dispatchMock).toHaveBeenNthCalledWith(1,
+        usersReducerActionCreators.toggleFollowingInProgress(
+            true,
+            1
+        ))
+    expect(dispatchMock).toHaveBeenNthCalledWith(2,
+        usersReducerActionCreators.followSuccess(1))
+    expect(dispatchMock).toHaveBeenNthCalledWith(3,
+        usersReducerActionCreators.toggleFollowingInProgress(
+            false,
+            1
+        ))
 })
-
 test('success unfollow thunk', async () => {
-    const thunk = unfollow(1)
+    const thunk = unfollow(1);
 
-    await thunk(dispatchMock, getStateMock, {})
-
-    expect(dispatchMock).toBeCalledTimes(3)
-    expect(dispatchMock).toHaveBeenNthCalledWith(1, usersReducerActionCreators.toggleFollowingInProgress(true, 1))
-    expect(dispatchMock).toHaveBeenNthCalledWith(2, usersReducerActionCreators.unfollowSuccess(1))
-    expect(dispatchMock).toHaveBeenNthCalledWith(3, usersReducerActionCreators.toggleFollowingInProgress(false, 1))
+  await thunk(dispatchMock, getStateMock, {});
+    expect(dispatchMock).toHaveBeenCalledTimes(3);
+    expect(dispatchMock).toHaveBeenNthCalledWith(1,
+        usersReducerActionCreators.toggleFollowingInProgress(
+            true,
+            1
+        ))
+    expect(dispatchMock).toHaveBeenNthCalledWith(2,
+        usersReducerActionCreators.unfollowSuccess(1))
+    expect(dispatchMock).toHaveBeenNthCalledWith(3,
+        usersReducerActionCreators.toggleFollowingInProgress(
+            false,
+            1
+        ))
 })

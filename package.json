@@ -2,6 +2,7 @@
   "name": "way-of-samurai-ts",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Nikky6666.github.io/Web-site",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
