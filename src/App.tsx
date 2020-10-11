@@ -18,9 +18,9 @@ const Settings = React.lazy(() => import('./components/Settings/Settings'));
 const Musik = React.lazy(() => import('./components/Musik/Musik'));
 const News = React.lazy(() => import('./components/News/News'));
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+const UsersPage = React.lazy(() => import('./components/Users/UsersPage'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
-const Login = React.lazy(() => import('./components/Login/Login'));
+const LoginPage = React.lazy(() => import('./components/Login/LoginPage'));
 
 const SuspensedDialogs = withSuspense(DialogsContainer);
 const SuspensedProfile = withSuspense(ProfileContainer)
@@ -76,11 +76,11 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                                        }
                                 />
                                 <Route path="/profile/:userId?" render={() => <SuspensedProfile/>}/>
-                                <Route path="/users" render={() => <UsersContainer pageTitle={'Samurai'}/>}/>
+                                <Route path="/users" render={() => <UsersPage />}/>
                                 <Route path="/news" render={() => <News/>}/>
                                 <Route path="/musik" render={() => <Musik/>}/>
                                 <Route path="/settings" render={() => <Settings/>}/>
-                                <Route path="/login" render={() => <Login/>}/>
+                                <Route path="/login" render={() => <LoginPage/>}/>
                                 <Route path="/test" render={()=><TestPage />} />
                             </React.Suspense>
                             <Route path="*" render={() => <NotFound/>}/>

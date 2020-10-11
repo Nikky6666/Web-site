@@ -21,7 +21,13 @@ type ProfileInfoPropsType = {
     saveProfile: (dataForm: any) => Promise<AxiosPromise>;
 }
 
-const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, isOwner, savePhoto, status, updateStatus, saveProfile}) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = (
+    {profile,
+        isOwner,
+        savePhoto,
+        status,
+        updateStatus,
+        saveProfile}) => {
     const [editMode, setEditMode] = useState(false);
 
     if (!profile) {
