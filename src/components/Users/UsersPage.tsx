@@ -1,6 +1,5 @@
 import React from 'react';
 import Users from "./Users";
-/*import {withAuthRedirect} from "../../hoc/withAuthRedirect";*/
 import {
     getIsFetching
 } from "../../redux/users-selectors";

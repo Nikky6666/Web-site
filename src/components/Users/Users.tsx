@@ -12,10 +12,13 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../redux/users-selectors";
-import {FilterType, follow, requestUsers, unfollow} from "../../redux/users-reducer";
+import {FilterType, follow, requestUsers, unfollow, usersReducerActionCreators} from "../../redux/users-reducer";
 import {UsersSearchForm} from "./UsersSearchForm";
+import {useHistory} from "react-router-dom";
+import * as queryString from "querystring";
 
-type PropsType = {}
+type PropsType = {};
+type QueryParamsType = { term?: string; page?: string; friend?: string };
 
 const Users: React.FC<PropsType> = (props) => {
 
@@ -27,6 +30,7 @@ const Users: React.FC<PropsType> = (props) => {
         isFetching = useSelector(getIsFetching),
         users = useSelector(getUsers),
         followingInProgress = useSelector(getFollowingInProgress),
+        history = useHistory(),
 
     onPageChanged = (pageNumber: number) => {
         dispatch(requestUsers(pageNumber, pageSize, filter));
@@ -42,12 +46,41 @@ const Users: React.FC<PropsType> = (props) => {
     };
 
     useEffect(() => {
-        dispatch(requestUsers(currentPage, pageSize, filter))
-    }, [])
+        //debugger
+        const query: QueryParamsType = {};
+        if(!!filter.term) query.term = filter.term
+        if(filter.friend !== null) query.friend = String(filter.friend)
+        if(currentPage !== 1) query.page = String(currentPage)
+
+        history.push({
+            pathname: '/users',
+            search: queryString.stringify(query)
+        })
+    }, [filter.friend, filter.term, currentPage])
+
+    useEffect(() => {
+        let parsed = queryString.parse(history.location.search.substr(1)) as QueryParamsType;
+        let actualPage = currentPage, actualFilter = filter;
+
+        if(parsed.page) actualPage = Number(parsed.page)
+        if(parsed.term) actualFilter = {...actualFilter, term: parsed.term}
+        if(parsed.friend) actualFilter = {...actualFilter, friend: parsed.friend === 'null' ? null : parsed.friend === 'true'}
+
+       // dispatch(requestUsers(actualPage, pageSize, actualFilter))
+        if(isFetching) {
+            dispatch(usersReducerActionCreators.setFilter(actualFilter));
+            dispatch(usersReducerActionCreators.setCurrentPage(actualPage))
+        } else {
+            dispatch(requestUsers(actualPage, pageSize, actualFilter))
+        }
+
+    }, [filter.friend, filter.term, currentPage])
+
+
 
     return (
         <>
-         <UsersSearchForm onFilterChanged={onFilterChanged}/>
+         <UsersSearchForm filter={filter} onFilterChanged={onFilterChanged}/>
         <div className={s.usersContainer}>
             {isFetching ? <Preloader/> : <></>}
             <Paginator totalItemsCount={totalUsersCount} currentPage={currentPage} pageSize={pageSize}

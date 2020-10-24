@@ -8,9 +8,12 @@ import AboutMe from "./AboutMe/AboutMe";
 import LookingForAJob from "./LookingForAJob/lookingForAJob";
 import Contacts from "./Contacts/Contacts";
 import ProfileDataForm from "./ProfileDataForm/ProfileDataForm";
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import {ProfileType} from "../../../types/types";
 import {AxiosPromise} from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
+import {savePhoto, updateStatus, saveProfile} from "../../../redux/profile-reducer";
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
@@ -21,16 +24,15 @@ type ProfileInfoPropsType = {
     saveProfile: (dataForm: any) => Promise<AxiosPromise>;
 }
 
-const ProfileInfo: React.FC<ProfileInfoPropsType> = (
-    {profile,
-        isOwner,
-        savePhoto,
-        status,
-        updateStatus,
-        saveProfile}) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = ({saveProfile, isOwner}) => {
+
+    const profile = useSelector((state: AppStateType) => state.profilePage.profile),
+          status = useSelector((state: AppStateType) => state.profilePage.status),
+          dispatch = useDispatch();
+
     const [editMode, setEditMode] = useState(false);
 
-    if (!profile) {
+        if (!profile) {
         return <Preloader/>
     }
 
@@ -38,11 +40,13 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (
         if (e.target.files && e.target.files.length) {
             savePhoto(e.target.files[0]);
         }
-    };
+    },
+        onUpdateStatus = (status: string) => {
+            dispatch(updateStatus(status));
+        }
 
   const onSubmit = (dataForm: ProfileType) => {
       saveProfile(dataForm).then(()=>{
-          //console.log("END")
           setEditMode(false);
       });
   };
@@ -50,13 +54,38 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (
 
     return (<div className={s.container}>
                 <div className={s.image}>
-                    <img src={profile.photos.large || userPhoto} alt="" className={s.userPhoto}/>
-                    {isOwner ? <AddFileButton name={'Выбрать аватар'} callback={onMainPhotoSelected}/> : <NavLink to={`dialogs/${profile.userId}`}><BigButton name="Send message"/></NavLink>}
+                    <img
+                        src={profile.photos.large || userPhoto}
+                        alt=""
+                        className={s.userPhoto}
+                    />
+                    {
+                        isOwner ?
+                        <AddFileButton
+                        name={'Выбрать аватар'}
+                        callback={onMainPhotoSelected}
+                        /> :
+                        <NavLink to={`dialogs/${profile.userId}`}>
+                            <BigButton name="Send message"/>
+                        </NavLink>
+                    }
                 </div>
                 {
                     // @ts-ignore
-                    editMode ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> :
-                    <ProfileData goToEditMode={()=>{setEditMode(true)}} profile={profile} isOwner={isOwner} status={status} updateStatus={updateStatus}/>}
+                    editMode ?
+                        <ProfileDataForm
+                            initialValues={profile}
+                            profile={profile}
+                            onSubmit={onSubmit}
+                        /> :
+                        <ProfileData
+                            goToEditMode={()=>{setEditMode(true)}}
+                            profile={profile}
+                            isOwner={isOwner}
+                            status={status}
+                            updateStatus={onUpdateStatus}
+                        />
+                }
             </div>
     );
 };

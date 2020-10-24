@@ -73,11 +73,11 @@ type ThunkType = BaseThunkType<UsersReducerActionsTypes>;
 export const requestUsers = (page: number, pageSize: number, filter: FilterType): ThunkType => {
     return async (dispatch, getState) => {
         dispatch(usersReducerActionCreators.toggleIsFetching(true));
-        dispatch(usersReducerActionCreators.setFilter(filter))
+        dispatch(usersReducerActionCreators.setFilter(filter));
+        dispatch(usersReducerActionCreators.setCurrentPage(page));
         let data = await userAPI.getUsers(page, pageSize, filter.term, filter.friend);
         dispatch(usersReducerActionCreators.toggleIsFetching(false));
         dispatch(usersReducerActionCreators.setUsers(data.items));
-        dispatch(usersReducerActionCreators.setCurrentPage(page));
         dispatch(usersReducerActionCreators.setTotalUsersCount(data.totalCount));
     }
 };
